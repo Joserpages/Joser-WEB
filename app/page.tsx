@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
