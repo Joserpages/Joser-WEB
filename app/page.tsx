@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence, } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+  type Variants,
+} from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
@@ -212,7 +218,9 @@ const faqs = [
   },
 ];
 
-const fadeUp = {
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number = 1) => ({
     opacity: 1,
@@ -220,12 +228,12 @@ const fadeUp = {
     transition: {
       delay: i * 0.08,
       duration: 0.75,
-      ease: [0.22, 1, 0.36, 1],
+      ease: smoothEase,
     },
   }),
 };
 
-const reveal = {
+const reveal: Variants = {
   hidden: { opacity: 0, y: 28, scale: 0.985 },
   visible: (i: number = 1) => ({
     opacity: 1,
@@ -234,7 +242,7 @@ const reveal = {
     transition: {
       delay: i * 0.06,
       duration: 0.7,
-      ease: [0.22, 1, 0.36, 1],
+      ease: smoothEase,
     },
   }),
 };
@@ -420,7 +428,8 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [openFaq, setOpenFaq] = useState<number>(0);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [portfolioFilter, setPortfolioFilter] = useState<PortfolioCategory>("Todos");
+  const [portfolioFilter, setPortfolioFilter] =
+    useState<PortfolioCategory>("Todos");
 
   useEffect(() => {
     try {
@@ -586,7 +595,7 @@ export default function Home() {
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
-                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.32, ease: smoothEase }}
               >
                 <div className="jw-mobile-panel-top">
                   <div className="jw-mobile-brand">
@@ -610,13 +619,27 @@ export default function Home() {
                 </div>
 
                 <nav className="jw-mobile-nav">
-                  <a href="#inicio" onClick={closeMobileMenu}>Inicio</a>
-                  <a href="#servicios" onClick={closeMobileMenu}>Servicios</a>
-                  <a href="#portafolio" onClick={closeMobileMenu}>Portafolio</a>
-                  <a href="#proceso" onClick={closeMobileMenu}>Proceso</a>
-                  <a href="#comentarios" onClick={closeMobileMenu}>Comentarios</a>
-                  <a href="#faq" onClick={closeMobileMenu}>Preguntas</a>
-                  <a href="#contacto" onClick={closeMobileMenu}>Contacto</a>
+                  <a href="#inicio" onClick={closeMobileMenu}>
+                    Inicio
+                  </a>
+                  <a href="#servicios" onClick={closeMobileMenu}>
+                    Servicios
+                  </a>
+                  <a href="#portafolio" onClick={closeMobileMenu}>
+                    Portafolio
+                  </a>
+                  <a href="#proceso" onClick={closeMobileMenu}>
+                    Proceso
+                  </a>
+                  <a href="#comentarios" onClick={closeMobileMenu}>
+                    Comentarios
+                  </a>
+                  <a href="#faq" onClick={closeMobileMenu}>
+                    Preguntas
+                  </a>
+                  <a href="#contacto" onClick={closeMobileMenu}>
+                    Contacto
+                  </a>
                 </nav>
 
                 <a
@@ -657,7 +680,8 @@ export default function Home() {
                 variants={fadeUp}
                 custom={1}
               >
-                Creamos páginas web con una presentación clara, moderna y bien cuidada.
+                Creamos páginas web con una presentación clara, moderna y bien
+                cuidada.
               </motion.h1>
 
               <motion.p
@@ -729,7 +753,7 @@ export default function Home() {
               className="jw-hero-visual"
               initial={{ opacity: 0, scale: 0.97, y: 26 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.9, ease: smoothEase }}
             >
               <div className="jw-editorial-card jw-editorial-card-light">
                 <div className="jw-editorial-top jw-editorial-top-light">
@@ -1221,9 +1245,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               className="jw-footer-link jw-footer-link-light"
-            >
-           
-            </a>
+            ></a>
           </div>
         </footer>
 
